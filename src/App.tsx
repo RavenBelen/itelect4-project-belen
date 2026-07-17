@@ -1,52 +1,61 @@
 import "./App.css";
 
-import { UserCard } from "./components/UserCard";
-import { CourseCard } from "./components/CourseCard";
-import { SubmissionCard } from "./components/SubmissionCard";
+import BettaCard from "./components/BettaCard";
+import TankCard from "./components/TankCard";
+import PlantCard from "./components/PlantCard";
 
-import { UserRole } from "./types";
-import type { User, Course, Submission } from "./types";
+import type {
+  Betta,
+  Tank,
+  Plant,
+} from "./types";
 
 function App() {
-  const user: User = {
+
+  const betta: Betta = {
     id: 1,
-    name: "Juan dela Cruz",
-    email: "juan@example.com",
-    role: UserRole.Student,
-    isActive: true,
-    score: 95.5,
+    name: "KCT Hulk",
+    strain: "Halfmoon",
+    gender: "Male",
+    age: 4,
+    price: 2500,
+    status: "healthy",
   };
 
-  const course: Course = {
-    id: 101,
-    name: "IT Elective 4",
-    units: 3,
-    semester: "1st Semester",
+  const tank: Tank = {
+    id: 1,
+    size: "5 Gallons",
+    waterType: "Freshwater",
+    temperature: 26,
+    hasFilter: true,
   };
 
-  const submission: Submission = {
+  const plant: Plant = {
     id: 1,
-    title: "GT2 Part 1",
-    status: "Submitted",
+    name: "Anubias Nana Petite",
+    type: "Foreground",
+    quantity: 3,
   };
 
   const handleClick = (): void => {
-    alert("Button Clicked!");
+    alert("Welcome to Betta Fish Management System!");
   };
 
   return (
-    <div>
-      <h1>GT2 React + TypeScript Demo</h1>
+    <div className="container">
 
-      <UserCard user={user} />
+      <h1>🐠 Betta Fish Management System</h1>
 
-      <CourseCard course={course} />
+      <BettaCard betta={betta} />
 
-      <SubmissionCard submission={submission} />
+      <TankCard tank={tank} />
+
+      <PlantCard plant={plant} />
 
       <button onClick={handleClick}>
-        Click Me
+        Show Message
       </button>
+
     </div>
   );
 }

@@ -28,12 +28,45 @@ export interface Submission {
   status: string;
 }
 
+export interface Betta {
+  id: number;
+  name: string;
+  strain: string;
+  gender: string;
+  age: number;
+  price: number;
+  status: BettaStatusValue;
+}
+
+export interface Tank {
+  id: number;
+  size: string;
+  waterType: string;
+  temperature: number;
+  hasFilter: boolean;
+}
+
+export interface Plant {
+  id: number;
+  name: string;
+  type: string;
+  quantity: number;
+}
+
 export interface ApiResponse<T> {
   success: boolean;
   data: T;
   message?: string;
 }
 
-export type UserUpdate = Partial<User>;
+export const BettaStatus = {
+  Healthy: "healthy",
+  Sick: "sick",
+  Quarantine: "quarantine",
+} as const;
 
-export type UserPreview = Pick<User, "id" | "name">;
+export type BettaStatusValue = (typeof BettaStatus)[keyof typeof BettaStatus];
+
+export type BettaUpdate = Partial<Betta>;
+
+export type BettaPreview = Pick<Betta, "id" | "name">;
