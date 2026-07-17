@@ -1,75 +1,132 @@
-# React + TypeScript + Vite
+# 🐠 Betta Fish Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+The **Betta Fish Management System** is a React + TypeScript application developed for the ITELECT4 course. It demonstrates the use of reusable React components and TypeScript features by displaying information about betta fish, aquarium tanks, and aquatic plants.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Display Betta Fish information
+- Display Aquarium Tank information
+- Display Aquatic Plant information
+- Reusable React Components
+- TypeScript Interfaces
+- Generic Interface
+- Utility Types
+- Enum
+- Typed Event Handler
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies Used
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React
+- TypeScript
+- Vite
+- CSS
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 
 ```
+src/
+│
+├── components/
+│   ├── BettaCard.tsx
+│   ├── TankCard.tsx
+│   └── PlantCard.tsx
+│
+├── types/
+│   └── index.ts
+│
+├── App.tsx
+├── App.css
+├── index.css
+├── index.ts
+└── main.tsx
+```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## TypeScript Concepts Used
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Interfaces
+- Generic Interfaces
+- Utility Types (`Partial` and `Pick`)
+- Enums
+- Typed Props
+- Typed Event Handlers
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/RavenBelen/itelect4-project-belen.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Open your browser and visit:
 
 ```
+http://localhost:5173
+```
+
+---
+
+## Sample Data
+
+### Betta Fish
+
+- Name: KCT Hulk
+- Strain: Halfmoon
+- Gender: Male
+- Age: 4 Months
+
+### Aquarium Tank
+
+- Size: 5 Gallons
+- Water Type: Freshwater
+- Temperature: 26°C
+
+### Aquatic Plant
+
+- Name: Anubias Nana Petite
+- Type: Foreground Plant
+- Quantity: 3
+
+---
+
+## Author
+
+**Raven Joseph Belen**  
+BS Information Technology  
+De La Salle Lipa
+
+---
+
+## Course
+
+ITELECT4 – Advanced Web Development with React and TypeScript
+
+---
+
+## License
+
+This project was developed for educational purposes as part of the course requirements for ITELECT4.
