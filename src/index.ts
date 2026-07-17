@@ -2,13 +2,8 @@
 //IT4B
 //GT 1 Part 1 and 2 of 2
 
-import type {
-    User,
-    Course,
-    Submission,
-    ApiResponse,
-} from "../types";
-import { UserRole } from "../types";
+import { UserRole } from "./types";
+import type { User, ApiResponse } from "./types";
 
 // Function 1
 function getUser(id: number): User {
