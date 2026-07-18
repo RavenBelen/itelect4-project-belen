@@ -6,7 +6,7 @@ import type {
   Betta,
   Tank,
   Plant,
-} from "./types";
+} from "./types/index.ts";
 
 function App() {
 
