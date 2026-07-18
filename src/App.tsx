@@ -1,5 +1,3 @@
-import "./App.css";
-
 import BettaCard from "./components/BettaCard";
 import TankCard from "./components/TankCard";
 import PlantCard from "./components/PlantCard";
@@ -42,21 +40,17 @@ function App() {
   };
 
   return (
-    <div className="container">
-
+    <>
       <h1>🐠 Betta Fish Management System</h1>
-
+      <hr />
       <BettaCard betta={betta} />
-
+      <hr />
       <TankCard tank={tank} />
-
+      <hr />
       <PlantCard plant={plant} />
-
-      <button onClick={handleClick}>
-        Show Message
-      </button>
-
-    </div>
+      <hr />
+      <button onClick={handleClick}>Show Message</button>
+    </>
   );
 }
 
