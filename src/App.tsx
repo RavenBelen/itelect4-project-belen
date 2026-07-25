@@ -1,12 +1,17 @@
+import { useEffect, useRef, useState } from "react";
+
 import BettaCard from "./components/BettaCard";
 import TankCard from "./components/TankCard";
 import PlantCard from "./components/PlantCard";
+
+import { useToggle } from "./hooks/useToggle";
+import { usePrevious } from "./hooks/usePrevious";
 
 import type {
   Betta,
   Tank,
   Plant,
-} from "./types/index.ts";
+} from "./types";
 
 function App() {
 
@@ -35,22 +40,88 @@ function App() {
     quantity: 3,
   };
 
+  // useState #1
+  const [bettaName, setBettaName] = useState<string>(betta.name);
+
+  // useState #2
+  const [visitCount, setVisitCount] = useState<number>(0);
+
+  // Custom Hook #1
+  const { value: showInfo, toggle } = useToggle(true);
+
+  // Custom Hook #2
+  const previousName = usePrevious(bettaName);
+
+  // useRef
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // useEffect
+  useEffect(() => {
+    document.title = `Betta: ${bettaName}`;
+  }, [bettaName]);
+
+  // Typed Event Handler
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setBettaName(event.target.value);
+  };
+
   const handleClick = (): void => {
-    alert("Welcome to Betta Fish Management System!");
+    setVisitCount((prev) => prev + 1);
+    inputRef.current?.focus();
   };
 
   return (
-    <>
+    <div className="container">
       <h1>🐠 Betta Fish Management System</h1>
+
+      <input
+        ref={inputRef}
+        type="text"
+        value={bettaName}
+        onChange={handleChange}
+        placeholder="Enter Betta Name"
+      />
+
+      <p>
+        <strong>Current Name:</strong> {bettaName}
+      </p>
+
+      <p>
+        <strong>Previous Name:</strong>{" "}
+        {previousName ?? "None"}
+      </p>
+
+      <button onClick={handleClick}>
+        Click Count: {visitCount}
+      </button>
+
+      <button onClick={toggle}>
+        {showInfo ? "Hide Cards" : "Show Cards"}
+      </button>
+
       <hr />
-      <BettaCard betta={betta} />
-      <hr />
-      <TankCard tank={tank} />
-      <hr />
-      <PlantCard plant={plant} />
-      <hr />
-      <button onClick={handleClick}>Show Message</button>
-    </>
+
+      {showInfo && (
+        <>
+          <BettaCard
+            betta={{
+              ...betta,
+              name: bettaName,
+            }}
+          />
+
+          <hr />
+
+          <TankCard tank={tank} />
+
+          <hr />
+
+          <PlantCard plant={plant} />
+        </>
+      )}
+    </div>
   );
 }
 
