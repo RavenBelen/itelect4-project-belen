@@ -1,14 +1,13 @@
-import { useEffect, useRef } from "react";
+﻿import { useLayoutEffect, useRef, useState } from "react";
 
-export function usePrevious<T>(
-  value: T
-): T | undefined {
+export function usePrevious<T>(value: T): T | undefined {
+  const [previous, setPrevious] = useState<T | undefined>(undefined);
   const previousRef = useRef<T | undefined>(undefined);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setPrevious(previousRef.current);
     previousRef.current = value;
   }, [value]);
 
-  // eslint-disable-next-line react-hooks/refs
-  return previousRef.current;
+  return previous;
 }
