@@ -1,31 +1,18 @@
-export const UserRole = {
-  Student: "student",
-  Teacher: "teacher",
-  Admin: "admin",
-} as const;
-
-export type UserRoleValue = (typeof UserRole)[keyof typeof UserRole];
+export type UserRole = "Student" | "Admin";
 
 export interface User {
   id: number;
   name: string;
   email: string;
-  role: UserRoleValue;
+  role: UserRole;
   isActive: boolean;
   score: number;
 }
 
-export interface Course {
-  id: number;
-  name: string;
-  units: number;
-  semester: string;
-}
-
-export interface Submission {
-  id: number;
-  title: string;
-  status: string;
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
 }
 
 export interface Betta {
@@ -35,7 +22,7 @@ export interface Betta {
   gender: string;
   age: number;
   price: number;
-  status: BettaStatusValue;
+  status: string;
 }
 
 export interface Tank {
@@ -52,21 +39,3 @@ export interface Plant {
   type: string;
   quantity: number;
 }
-
-export interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  message?: string;
-}
-
-export const BettaStatus = {
-  Healthy: "healthy",
-  Sick: "sick",
-  Quarantine: "quarantine",
-} as const;
-
-export type BettaStatusValue = (typeof BettaStatus)[keyof typeof BettaStatus];
-
-export type BettaUpdate = Partial<Betta>;
-
-export type BettaPreview = Pick<Betta, "id" | "name">;
