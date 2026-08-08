@@ -9,6 +9,7 @@ import BettaCard from "./components/BettaCard";
 import TankCard from "./components/TankCard";
 import PlantCard from "./components/PlantCard";
 
+import "./App.css";
 import { useToggle } from "./hooks/useToggle";
 import { usePrevious } from "./hooks/usePrevious";
 
@@ -332,224 +333,243 @@ function App() {
           : ""
       }
     >
-      <main className="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+      <main className="min-h-screen bg-slate-950 text-slate-100 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+        <div className="mx-auto grid min-h-screen max-w-7xl gap-6 px-4 py-6 lg:grid-cols-[280px_1fr]">
 
-        {/* ===========================================
-            HEADER
-        =========================================== */}
-
-        <header className="border-b border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-          <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
-
-            <div>
-              <div className="mb-2 flex items-center gap-2">
-                <span className="text-2xl">
+          <aside className="space-y-6">
+            <div className="sidebar-card p-6">
+              <div className="mb-8 flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-400">
+                    Betta Manager
+                  </p>
+                  <h2 className="mt-3 text-2xl font-bold text-white">
+                    Dashboard
+                  </h2>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-xl text-sky-300">
                   🐠
-                </span>
-
-                <p className="text-sm font-semibold uppercase tracking-widest text-teal-600 dark:text-teal-400">
-                  Betta Manager
-                </p>
+                </div>
               </div>
-
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Aquarium Management System
-              </h1>
-
-              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                Manage your betta fish, aquarium tank,
-                and aquatic plants in one place.
+              <p className="text-sm leading-6 text-slate-400">
+                Manage your betta fish, aquarium tank, and aquatic plants in one place.
               </p>
             </div>
 
-            <button
-              onClick={toggleDarkMode}
-              className="rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-slate-700 dark:bg-amber-300 dark:text-slate-900 dark:hover:bg-amber-200"
-            >
-              {isDarkMode
-                ? "☀️ Light Mode"
-                : "🌙 Dark Mode"}
-            </button>
-          </div>
-        </header>
-
-        {/* ===========================================
-            CONTENT
-        =========================================== */}
-
-        <section className="mx-auto max-w-7xl px-6 py-8">
-
-          {/* Dashboard Heading */}
-
-          <div className="mb-8">
-            <p className="text-sm font-semibold uppercase tracking-widest text-teal-600 dark:text-teal-400">
-              Aquarium Dashboard
-            </p>
-
-            <h2 className="mt-1 text-2xl font-bold sm:text-3xl">
-              Welcome to your aquarium 🫧
-            </h2>
-
-            <p className="mt-2 text-slate-500 dark:text-slate-400">
-              Keep track of your betta, tank, and aquatic
-              plants.
-            </p>
-          </div>
-
-          {/* =========================================
-              BETTA MANAGEMENT
-          ========================================= */}
-
-          <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-
-            <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-teal-600 dark:text-teal-400">
-                Betta Information
+            <div className="sidebar-card p-6">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+                Menu
               </p>
+              <nav className="space-y-2">
+                {[
+                  "Dashboard",
+                  "Betta Fish",
+                  "Aquarium Tank",
+                  "Aquatic Plants",
+                  "Reports",
+                  "Settings",
+                  "About",
+                ].map((item) => (
+                  <button
+                    key={item}
+                    className={`w-full rounded-3xl px-4 py-3 text-left text-sm font-semibold transition ${
+                      item === "Dashboard"
+                        ? "bg-slate-900 text-white"
+                        : "bg-slate-900/60 text-slate-300 hover:bg-slate-800 hover:text-white"
+                    }`}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </nav>
+            </div>
 
-              <h2 className="mt-1 text-2xl font-bold">
-                Update Your Betta
-              </h2>
-
-              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                Change your betta's display name.
+            <div className="sidebar-card p-6">
+              <p className="text-sm font-semibold text-white">Healthy Aquarium</p>
+              <p className="mt-3 text-sm leading-6 text-slate-400">
+                A happy betta lives in a clean and well-maintained environment.
               </p>
             </div>
+          </aside>
 
-            {/* Input Area */}
+          <div className="space-y-6">
+            <div className="dashboard-card p-6">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-400">
+                    Dashboard
+                  </p>
+                  <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">
+                    Welcome to your aquarium
+                  </h1>
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
+                    Track your betta fish, aquarium tank status, and plant setup from one intuitive dashboard.
+                  </p>
+                </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={toggleDarkMode}
+                    className="rounded-3xl bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                  >
+                    {isDarkMode ? "Light Mode" : "Dark Mode"}
+                  </button>
+                  <div className="hidden h-12 w-12 items-center justify-center rounded-full bg-slate-900/70 text-xl text-slate-300 sm:flex">
+                    👤
+                  </div>
+                </div>
+              </div>
 
-              <input
-                ref={inputRef}
-                type="text"
-                value={bettaName}
-                onChange={handleChange}
-                placeholder="Enter Betta Name"
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500 sm:max-w-md"
-              />
-
-              <button
-                onClick={handleClick}
-                className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
-              >
-                Focus Input
-              </button>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {[
+                  { title: "Total Bettas", value: "12", badge: "Healthy" },
+                  { title: "Total Tanks", value: "4", badge: "Active" },
+                  { title: "Total Plants", value: "15", badge: "Healthy" },
+                  { title: "Last Updated", value: "Today", badge: "Just now" },
+                ].map((item) => (
+                  <div key={item.title} className="stat-card p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+                      {item.title}
+                    </p>
+                    <p className="mt-4 text-3xl font-bold text-white">{item.value}</p>
+                    <p className="mt-2 text-sm text-slate-400">{item.badge}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Name Information */}
-
-            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-              <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-800">
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  Current Name
-                </p>
-
-                <p className="mt-1 text-lg font-bold">
-                  {bettaName}
-                </p>
+            <div className="dashboard-card p-6">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+                    Overview
+                  </p>
+                  <h2 className="mt-2 text-2xl font-bold text-white">
+                    Aquarium Information
+                  </h2>
+                </div>
+                <button
+                  onClick={toggleInfo}
+                  className="rounded-3xl bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400"
+                >
+                  {showInfo ? "Hide Overview" : "Show Overview"}
+                </button>
               </div>
 
-              <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-800">
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  Previous Name
-                </p>
-
-                <p className="mt-1 text-lg font-bold">
-                  {previousName ?? "None"}
-                </p>
-              </div>
-
+              {showInfo && (
+                <div className="mt-6 grid gap-6 lg:grid-cols-3">
+                  <BettaCard betta={{ ...betta, name: bettaName }} />
+                  <TankCard tank={tank} />
+                  <PlantCard plant={plant} />
+                </div>
+              )}
             </div>
 
-            {/* Action Buttons */}
+            <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+              <div className="dashboard-card p-6">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+                      Betta Control
+                    </p>
+                    <h2 className="mt-2 text-2xl font-bold text-white">
+                      Update your betta details
+                    </h2>
+                  </div>
+                  <button
+                    onClick={handleClick}
+                    className="rounded-3xl bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                  >
+                    Save Name
+                  </button>
+                </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
+                <div className="mt-6 grid gap-4 sm:grid-cols-[1.4fr_0.9fr]">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={bettaName}
+                    onChange={handleChange}
+                    placeholder="Enter Betta Name"
+                    className="AppInput w-full rounded-3xl border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400"
+                  />
+                  <button
+                    onClick={handleClick}
+                    className="rounded-3xl bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                  >
+                    Focus Input
+                  </button>
+                </div>
 
-              <button
-                onClick={handleClick}
-                className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
-              >
-                Click Count: {visitCount}
-              </button>
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <div className="stat-card p-5">
+                    <p className="text-sm text-slate-400">Current Name</p>
+                    <p className="mt-3 text-lg font-semibold text-white">{bettaName}</p>
+                  </div>
+                  <div className="stat-card p-5">
+                    <p className="text-sm text-slate-400">Previous Name</p>
+                    <p className="mt-3 text-lg font-semibold text-white">{previousName ?? "None"}</p>
+                  </div>
+                </div>
 
-              <button
-                onClick={toggleInfo}
-                className="rounded-xl bg-teal-600 px-5 py-3 font-semibold text-white transition hover:bg-teal-700"
-              >
-                {showInfo
-                  ? "Hide Aquarium Information"
-                  : "Show Aquarium Information"}
-              </button>
+                <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                  <button
+                    onClick={handleClick}
+                    className="rounded-3xl bg-slate-800 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                  >
+                    Clicks: {visitCount}
+                  </button>
+                  <button
+                    onClick={handleError}
+                    className="rounded-3xl bg-slate-900/70 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                  >
+                    Simulate Error
+                  </button>
+                  <button
+                    onClick={handleRetry}
+                    className="rounded-3xl bg-slate-900/70 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                  >
+                    Refresh Data
+                  </button>
+                </div>
+              </div>
 
-              <button
-                onClick={handleError}
-                className="rounded-xl bg-red-100 px-5 py-3 font-semibold text-red-700 transition hover:bg-red-200 dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50"
-              >
-                Simulate Error
-              </button>
+              <div className="dashboard-card p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+                      Quick Actions
+                    </p>
+                    <h2 className="mt-2 text-2xl font-bold text-white">
+                      Shortcuts
+                    </h2>
+                  </div>
+                  <span className="rounded-full bg-slate-900/60 px-3 py-1 text-xs font-semibold text-slate-300">
+                    4 actions
+                  </span>
+                </div>
 
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  {[
+                    { label: "Add New Betta", detail: "Register a new betta fish" },
+                    { label: "Add New Tank", detail: "Set up a new aquarium tank" },
+                    { label: "Add New Plant", detail: "Add aquatic plants" },
+                    { label: "View Reports", detail: "Check aquarium reports" },
+                  ].map((action) => (
+                    <div key={action.label} className="action-card p-4">
+                      <p className="text-sm font-semibold text-white">{action.label}</p>
+                      <p className="mt-2 text-sm text-slate-400">{action.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </section>
 
-          {/* =========================================
-              AQUARIUM OVERVIEW
-          ========================================= */}
-
-          {showInfo && (
-            <section>
-
-              <div className="mb-6">
-                <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                  Overview
-                </p>
-
-                <h2 className="mt-1 text-2xl font-bold">
-                  Aquarium Overview
-                </h2>
-
-                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                  Current information about your aquarium setup.
-                </p>
-              </div>
-
-              {/* RESPONSIVE GRID
-                  Mobile: 1
-                  sm: 2
-                  lg: 3
-              */}
-
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-                <BettaCard
-                  betta={{
-                    ...betta,
-                    name: bettaName,
-                  }}
-                />
-
-                <TankCard tank={tank} />
-
-                <PlantCard plant={plant} />
-
-              </div>
-
-            </section>
-          )}
-
-        </section>
-
-        {/* ===========================================
-            FOOTER
-        =========================================== */}
-
-        <footer className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-          <div className="mx-auto max-w-7xl px-6 py-5 text-center text-sm text-slate-500 dark:text-slate-400">
-            🐠 Betta Fish Management System
+            <footer className="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 text-center text-sm text-slate-400">
+              🐠 Betta Fish Management System
+            </footer>
           </div>
-        </footer>
-
+        </div>
       </main>
     </div>
   );

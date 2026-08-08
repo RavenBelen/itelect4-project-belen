@@ -1,20 +1,3 @@
-export type UserRole = "Student" | "Admin";
-
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: UserRole;
-  isActive: boolean;
-  score: number;
-}
-
-export interface ApiResponse<T> {
-  success: boolean;
-  message: string;
-  data: T;
-}
-
 export interface Betta {
   id: number;
   name: string;
