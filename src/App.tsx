@@ -1,4 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react";
 
 import BettaCard from "./components/BettaCard";
 import TankCard from "./components/TankCard";
@@ -13,68 +18,148 @@ import type {
   Plant,
 } from "./types";
 
+const initialBetta: Betta = {
+  id: 1,
+  name: "KCT Hulk",
+  strain: "Halfmoon",
+  gender: "Male",
+  age: 4,
+  price: 2500,
+  status: "healthy",
+};
+
+const initialTank: Tank = {
+  id: 1,
+  size: "5 Gallons",
+  waterType: "Freshwater",
+  temperature: 26,
+  hasFilter: true,
+};
+
+const initialPlant: Plant = {
+  id: 1,
+  name: "Anubias Nana Petite",
+  type: "Foreground",
+  quantity: 3,
+};
+
 function App() {
+  // ==========================================
+  // Betta, Tank, and Plant State
+  // ==========================================
 
-  const betta: Betta = {
-    id: 1,
-    name: "KCT Hulk",
-    strain: "Halfmoon",
-    gender: "Male",
-    age: 4,
-    price: 2500,
-    status: "healthy",
-  };
+  const [betta] = useState<Betta>(initialBetta);
 
-  const tank: Tank = {
-    id: 1,
-    size: "5 Gallons",
-    waterType: "Freshwater",
-    temperature: 26,
-    hasFilter: true,
-  };
+  const [tank] = useState<Tank>(initialTank);
 
-  const plant: Plant = {
-    id: 1,
-    name: "Anubias Nana Petite",
-    type: "Foreground",
-    quantity: 3,
-  };
+  const [plant] = useState<Plant>(initialPlant);
 
+  // ==========================================
   // useState #1
-  const [bettaName, setBettaName] = useState<string>(betta.name);
+  // ==========================================
 
+  const [bettaName, setBettaName] =
+    useState<string>(initialBetta.name);
+
+  // ==========================================
   // useState #2
-  const [visitCount, setVisitCount] = useState<number>(0);
+  // ==========================================
 
+  const [visitCount, setVisitCount] =
+    useState<number>(0);
+
+  // ==========================================
   // Custom Hook #1
-  const { value: showInfo, toggle } = useToggle(true);
+  // ==========================================
 
+  const {
+    value: showInfo,
+    toggle,
+  } = useToggle(true);
+
+  // ==========================================
   // Custom Hook #2
-  const previousName = usePrevious(bettaName);
+  // ==========================================
 
+  const previousName =
+    usePrevious<string>(bettaName);
+
+  // ==========================================
   // useRef
-  const inputRef = useRef<HTMLInputElement>(null);
+  // ==========================================
 
+  const inputRef =
+    useRef<HTMLInputElement>(null);
+
+  // ==========================================
   // useEffect
+  // Updates browser tab title
+  // ==========================================
+
   useEffect(() => {
-    document.title = `Betta: ${bettaName}`;
+    if (bettaName !== "") {
+      document.title = `Betta: ${bettaName}`;
+    }
   }, [bettaName]);
 
-  // Typed Event Handler
+  // ==========================================
+  // Typed Change Event Handler
+  // ==========================================
+
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>
   ): void => {
     setBettaName(event.target.value);
   };
 
+  // ==========================================
+  // Button Handler
+  // ==========================================
+
   const handleClick = (): void => {
-    setVisitCount((prev) => prev + 1);
+    setVisitCount(
+      (prev: number) => prev + 1
+    );
+
     inputRef.current?.focus();
   };
 
+  // ==========================================
+  // Loading Screen
+  // ==========================================
+
+  if (
+    betta === null ||
+    tank === null ||
+    plant === null
+  ) {
+    return (
+      <div className="container">
+        <h1>
+          🐠 Betta Fish Management System
+        </h1>
+
+        <p>
+          Loading aquarium data...
+        </p>
+      </div>
+    );
+  }
+
+  // ==========================================
+  // Main Application
+  // ==========================================
+
   return (
     <div className="container">
-      <h1>🐠 Betta Fish Management System</h1>
+
+      <h1>
+        🐠 Betta Fish Management System
+      </h1>
+
+      <hr />
+
+      <h2>Betta Name</h2>
 
       <input
         ref={inputRef}
@@ -85,7 +170,8 @@ function App() {
       />
 
       <p>
-        <strong>Current Name:</strong> {bettaName}
+        <strong>Current Name:</strong>{" "}
+        {bettaName}
       </p>
 
       <p>
@@ -98,7 +184,9 @@ function App() {
       </button>
 
       <button onClick={toggle}>
-        {showInfo ? "Hide Cards" : "Show Cards"}
+        {showInfo
+          ? "Hide Aquarium Information"
+          : "Show Aquarium Information"}
       </button>
 
       <hr />
@@ -114,13 +202,18 @@ function App() {
 
           <hr />
 
-          <TankCard tank={tank} />
+          <TankCard
+            tank={tank}
+          />
 
           <hr />
 
-          <PlantCard plant={plant} />
+          <PlantCard
+            plant={plant}
+          />
         </>
       )}
+
     </div>
   );
 }
