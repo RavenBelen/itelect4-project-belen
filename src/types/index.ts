@@ -6,6 +6,8 @@ export interface Betta {
   age: number;
   price: number;
   status: string;
+  image?: string;
+  description?: string;
 }
 
 export interface Tank {
@@ -14,6 +16,9 @@ export interface Tank {
   waterType: string;
   temperature: number;
   hasFilter: boolean;
+  status?: string;
+  image?: string;
+  description?: string;
 }
 
 export interface Plant {
@@ -21,4 +26,7 @@ export interface Plant {
   name: string;
   type: string;
   quantity: number;
-}
+  status?: string;
+  image?: string;
+  description?: string;
+}
