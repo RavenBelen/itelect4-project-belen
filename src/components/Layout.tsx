@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, Outlet, useNavigate, Link } from "react-router";
 import useAuthStore from "../store/authStore";
+import useUiStore from "../store/uiStore";
 
 function Layout() {
   const navigate = useNavigate();
@@ -10,24 +11,14 @@ function Layout() {
   const [showAbout, setShowAbout] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    const stored = localStorage.getItem("theme");
-    if (stored) return stored === "dark";
-    return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches ?? false;
-  });
+  const darkMode = useUiStore((state) => state.isDarkMode);
+  const toggleDarkMode = useUiStore((state) => state.toggleDarkMode);
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    document.documentElement.classList.toggle("dark", darkMode);
+    document.documentElement.dataset.theme = darkMode ? "dark" : "light";
+    document.documentElement.style.colorScheme = darkMode ? "dark" : "light";
   }, [darkMode]);
-
-  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   const handleLogout = () => {
     logout();
@@ -160,9 +151,11 @@ function Layout() {
             <div className="flex items-center gap-3">
               <button
                 onClick={toggleDarkMode}
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                aria-pressed={darkMode}
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-700 shadow-sm transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
               >
-                {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+                {darkMode ? "☀️ Switch to Light" : "🌙 Switch to Dark"}
               </button>
 
               {userName && (
@@ -267,9 +260,14 @@ function Layout() {
                 </div>
                 <button
                   onClick={toggleDarkMode}
-                  className="rounded-lg bg-teal-600 px-3 py-1 text-xs font-semibold text-white"
+                  role="switch"
+                  aria-checked={darkMode}
+                  aria-label="Toggle dark mode"
+                  className={`relative h-7 w-12 rounded-full transition-colors ${darkMode ? "bg-teal-600" : "bg-slate-300"}`}
                 >
-                  {darkMode ? "Dark" : "Light"}
+                  <span className={`absolute top-1 grid h-5 w-5 place-items-center rounded-full bg-white text-[10px] shadow transition-transform ${darkMode ? "translate-x-6" : "translate-x-1"}`}>
+                    {darkMode ? "🌙" : "☀️"}
+                  </span>
                 </button>
               </div>
 
@@ -295,4 +293,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default Layout;

@@ -1,10 +1,29 @@
 import { Link } from "react-router";
-import { initialBettas, initialTanks, initialPlants } from "../data/mockData";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBettas, fetchPlants } from "../api/client";
+import { initialTanks } from "../data/mockData";
+import type { ApiBetta, ApiPlant } from "../types";
 
 function DashboardPage() {
-  const betta = initialBettas[0];
+  const { data: bettas, isPending: isBettasPending, isError: isBettasError, error: bettasError } = useQuery<ApiBetta[]>({
+    queryKey: ["bettas"],
+    queryFn: fetchBettas,
+  });
+  const { data: plants, isPending: isPlantsPending, isError: isPlantsError, error: plantsError } = useQuery<ApiPlant[]>({
+    queryKey: ["plants"],
+    queryFn: fetchPlants,
+  });
+  const betta = bettas?.[0];
   const tank = initialTanks[0];
-  const plant = initialPlants[0];
+  const plant = plants?.[0];
+
+  if (isBettasPending || isPlantsPending) {
+    return <div className="animate-pulse p-8">Loading aquarium overview...</div>;
+  }
+
+  if (isBettasError || isPlantsError || !betta || !plant) {
+    return <div className="m-8 rounded-xl bg-rose-50 p-4 text-rose-700">{bettasError?.message || plantsError?.message || "No aquarium data is available."}</div>;
+  }
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
@@ -244,4 +263,4 @@ function DashboardPage() {
   );
 }
 
-export default DashboardPage;
+export default DashboardPage;

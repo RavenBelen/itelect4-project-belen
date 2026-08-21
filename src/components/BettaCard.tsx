@@ -1,8 +1,8 @@
 import { Link } from "react-router";
-import type { Betta } from "../types";
+import type { ApiBetta } from "../types";
 
 interface BettaCardProps {
-  betta: Betta;
+  betta: ApiBetta;
   variant?: "default" | "compact";
 }
 
@@ -86,4 +86,4 @@ function BettaCard({ betta }: BettaCardProps) {
   );
 }
 
-export default BettaCard;
+export default BettaCard;

@@ -1,4 +1,4 @@
-import type { Betta, Tank, Plant } from "../types";
+import type { Tank } from "../types";
 
 export interface ReportItem {
   id: number;
@@ -10,57 +10,6 @@ export interface ReportItem {
   overallHealth: "Excellent" | "Good" | "Needs Attention";
   notes: string;
 }
-
-export const initialBettas: Betta[] = [
-  {
-    id: 1,
-    name: "KCT Hulk",
-    strain: "Halfmoon",
-    gender: "Male",
-    age: 4,
-    price: 2500,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80",
-    description:
-      "KCT Hulk is a beautiful halfmoon betta with a strong and active personality. It has vibrant colors and a healthy appetite.",
-  },
-  {
-    id: 2,
-    name: "Sakura",
-    strain: "Halfmoon",
-    gender: "Female",
-    age: 5,
-    price: 1800,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1534043464124-3be32fe000c9?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Sakura is a gentle female halfmoon betta known for her delicate pink and white fins and peaceful temperament.",
-  },
-  {
-    id: 3,
-    name: "Blue Samurai",
-    strain: "Plakat",
-    gender: "Male",
-    age: 3,
-    price: 3200,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Blue Samurai features striking metallic blue scales with deep black contrasting patterns and a vigorous swim style.",
-  },
-  {
-    id: 4,
-    name: "Copper Alien",
-    strain: "Alien Betta",
-    gender: "Male",
-    age: 6,
-    price: 3800,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Copper Alien is an exotic hybrid with mesmerizing iridescent copper-green shine and full webbed finnage.",
-  },
-];
 
 export const initialTanks: Tank[] = [
   {
@@ -95,49 +44,6 @@ export const initialTanks: Tank[] = [
     image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=800&auto=format&fit=crop&q=80",
     description:
       "10 Gallons aquascaped showcase featuring driftwood, active substrate, and dense live aquatic vegetation.",
-  },
-];
-
-export const initialPlants: Plant[] = [
-  {
-    id: 1,
-    name: "Anubias Nana Petite",
-    type: "Foreground",
-    quantity: 3,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1534043464124-3be32fe000c9?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Very hardy foreground plant with petite deep green leaves that thrive attached to hardscape surfaces.",
-  },
-  {
-    id: 2,
-    name: "Anubias Jade Petite",
-    type: "Midground",
-    quantity: 2,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Midground cultivar with vibrant jade green coloration, creating natural hiding spots and perches for bettas.",
-  },
-  {
-    id: 3,
-    name: "Java Fern Windelov",
-    type: "Background",
-    quantity: 4,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Background plant with staghorn-like frond tips. Excellent for nutrient absorption and shelter.",
-  },
-  {
-    id: 4,
-    name: "Amazon Sword",
-    type: "Background",
-    quantity: 2,
-    status: "Healthy",
-    image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Fast growing rosette plant with broad lush leaves, adding volume and natural filtration to the aquarium.",
   },
 ];
 
