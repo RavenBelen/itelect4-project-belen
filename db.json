@@ -1,0 +1,107 @@
+{
+  "bettas": [
+    {
+      "id": "1",
+      "name": "KCT Hulk",
+      "strain": "Halfmoon",
+      "gender": "Male",
+      "age": 4,
+      "price": 2500,
+      "status": "Healthy",
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80",
+      "description": "KCT Hulk is a vibrant and active betta with a healthy appetite."
+    },
+    {
+      "id": "2",
+      "name": "Sakura",
+      "strain": "Halfmoon",
+      "gender": "Male",
+      "age": 5,
+      "price": 1800,
+      "status": "Healthy",
+      "image": "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=800&auto=format&fit=crop&q=80",
+      "description": "Sakura is a gentle halfmoon betta with delicate pink and white fins."
+    },
+    {
+      "id": "3",
+      "name": "Blue Samurai",
+      "strain": "Plakat",
+      "gender": "Male",
+      "age": 3,
+      "price": 3200,
+      "status": "Healthy",
+      "description": "Blue Samurai has metallic blue scales, dark contrasting patterns, and a vigorous swim style."
+    },
+    {
+      "id": "4",
+      "name": "Copper Alien",
+      "strain": "Alien Betta",
+      "gender": "Male",
+      "age": 6,
+      "price": 3800,
+      "status": "Healthy",
+      "description": "Copper Alien is an exotic hybrid with an iridescent copper-green shine."
+    }
+  ],
+  "plants": [
+    {
+      "id": "1",
+      "name": "Anubias Nana Petite",
+      "type": "Foreground",
+      "quantity": 3,
+      "status": "Healthy",
+      "description": "A hardy foreground plant with petite deep-green leaves."
+    },
+    {
+      "id": "2",
+      "name": "Anubias Jade Petite",
+      "type": "Midground",
+      "quantity": 2,
+      "status": "Healthy",
+      "description": "A vibrant jade-green plant that creates natural hiding spots."
+    },
+    {
+      "id": "3",
+      "name": "Java Fern Windelov",
+      "type": "Background",
+      "quantity": 4,
+      "status": "Healthy",
+      "description": "A background plant with staghorn-like frond tips."
+    },
+    {
+      "id": "4",
+      "name": "Amazon Sword",
+      "type": "Background",
+      "quantity": 2,
+      "status": "Healthy",
+      "description": "A fast-growing rosette plant that supports natural filtration."
+    }
+  ],
+  "tanks": [
+    {
+      "id": "1",
+      "size": "5 Gallons Tank",
+      "waterType": "Freshwater",
+      "temperature": 26,
+      "hasFilter": true,
+      "status": "Good"
+    },
+    {
+      "id": "2",
+      "size": "2.5 Gallons Tank",
+      "waterType": "Freshwater",
+      "temperature": 26,
+      "hasFilter": true,
+      "status": "Good"
+    },
+    {
+      "id": "3",
+      "size": "10 Gallons Planted",
+      "waterType": "Freshwater",
+      "temperature": 25,
+      "hasFilter": true,
+      "status": "Good"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

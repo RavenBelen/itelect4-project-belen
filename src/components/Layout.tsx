@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, Outlet, useNavigate, Link } from "react-router";
 import useAuthStore from "../store/authStore";
+import useUiStore from "../store/uiStore";
 
 function Layout() {
   const navigate = useNavigate();
@@ -10,24 +11,16 @@ function Layout() {
   const [showAbout, setShowAbout] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    const stored = localStorage.getItem("theme");
-    if (stored) return stored === "dark";
-    return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches ?? false;
-  });
+  const darkMode = useUiStore((state) => state.isDarkMode);
+  const toggleDarkMode = useUiStore((state) => state.toggleDarkMode);
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
-
-  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   const handleLogout = () => {
     logout();
@@ -295,4 +288,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default Layout;

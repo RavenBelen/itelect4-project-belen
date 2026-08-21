@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { Plant } from "../types";
+import type { ApiPlant } from "../types";
 
 interface PlantCardProps {
-  plant: Plant;
+  plant: ApiPlant;
 }
 
 function PlantCard({ plant }: PlantCardProps) {
@@ -106,4 +106,4 @@ function PlantCard({ plant }: PlantCardProps) {
   );
 }
 
-export default PlantCard;
+export default PlantCard;
