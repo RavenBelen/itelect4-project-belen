@@ -1,30 +1,20 @@
 import { useState } from "react";
-import type { Tank } from "../types";
+import type { ApiTank } from "../types";
 
 interface TankCardProps {
-  tank: Tank;
+  tank: ApiTank;
+  onDelete: (id: string) => void;
+  isDeleting: boolean;
 }
 
-function TankCard({ tank }: TankCardProps) {
+function TankCard({ tank, onDelete, isDeleting }: TankCardProps) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <div className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
-        {/* Tank Image Frame */}
-        <div className="relative mb-4 h-48 w-full overflow-hidden rounded-xl bg-slate-900">
-          <img
-            src={
-              tank.image ||
-              "https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=800&auto=format&fit=crop&q=80"
-            }
-            alt={tank.size}
-            className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=800&auto=format&fit=crop&q=80";
-            }}
-          />
+        <div className="relative mb-4 grid h-48 w-full place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-sky-400 to-cyan-700 text-8xl shadow-inner" role="img" aria-label={`${tank.size} aquarium tank sticker`}>
+          <span aria-hidden="true">🐠</span>
           <div className="absolute right-2 top-2 rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">
             #{tank.id}
           </div>
@@ -68,12 +58,7 @@ function TankCard({ tank }: TankCardProps) {
             </div>
           </div>
 
-          <button
-            onClick={() => setShowModal(true)}
-            className="mt-5 block w-full rounded-xl bg-[#0e4d58] py-2.5 text-center text-xs font-bold text-white shadow-sm transition hover:bg-[#093941] dark:bg-teal-700 dark:hover:bg-teal-600"
-          >
-            View Details
-          </button>
+          <div className="mt-5 grid grid-cols-2 gap-2"><button onClick={() => setShowModal(true)} className="rounded-xl bg-[#0e4d58] py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-[#093941] dark:bg-teal-700 dark:hover:bg-teal-600">View Details</button><button onClick={() => onDelete(tank.id)} disabled={isDeleting} className="rounded-xl bg-rose-600 py-2.5 text-xs font-bold text-white transition hover:bg-rose-700 disabled:opacity-50">{isDeleting ? "Deleting..." : "Delete"}</button></div>
         </div>
       </div>
 
@@ -117,4 +102,4 @@ function TankCard({ tank }: TankCardProps) {
   );
 }
 
-export default TankCard;
+export default TankCard;

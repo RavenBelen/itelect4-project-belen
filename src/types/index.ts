@@ -34,4 +34,7 @@ export interface Plant {
 // json-server generates string ids, unlike the original in-app mock data.
 export type ApiBetta = Omit<Betta, "id"> & { id: string };
 export type ApiPlant = Omit<Plant, "id"> & { id: string };
+export type ApiTank = Omit<Tank, "id"> & { id: string };
 export type NewPlant = Omit<ApiPlant, "id">;
+export type NewBetta = Omit<ApiBetta, "id">;
+export type NewTank = Omit<ApiTank, "id">;
