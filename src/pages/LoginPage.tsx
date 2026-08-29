@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import useAuthStore from "../store/authStore";
 
 function LoginPage() {
@@ -34,29 +37,31 @@ function LoginPage() {
 
         {showInput ? (
           <form onSubmit={handleLogin} className="mt-5 space-y-3">
-            <input
+            <Label htmlFor="display-name" className="sr-only">Display name</Label>
+            <Input
+              id="display-name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter your name / title"
-              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+              className="h-10 text-xs text-slate-900 dark:text-white"
               autoFocus
             />
-            <button
+            <Button
               type="submit"
-              className="w-full rounded-xl bg-[#0e4d58] py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-[#093941] dark:bg-teal-700 dark:hover:bg-teal-600"
+              className="h-10 w-full bg-[#0e4d58] text-xs font-bold text-white hover:bg-[#093941] dark:bg-teal-700 dark:hover:bg-teal-600"
             >
               Sign In to Reports
-            </button>
+            </Button>
           </form>
         ) : (
           <div className="mt-6 space-y-2">
-            <button
+            <Button
               onClick={() => handleLogin()}
-              className="w-full rounded-xl bg-[#0e4d58] py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-[#093941] dark:bg-teal-700 dark:hover:bg-teal-600"
+              className="h-10 w-full bg-[#0e4d58] text-xs font-bold text-white hover:bg-[#093941] dark:bg-teal-700 dark:hover:bg-teal-600"
             >
               Go to Login
-            </button>
+            </Button>
 
             <button
               onClick={() => setShowInput(true)}
@@ -75,4 +80,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default LoginPage;

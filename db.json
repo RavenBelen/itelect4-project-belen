@@ -75,6 +75,13 @@
       "quantity": 2,
       "status": "Healthy",
       "description": "A fast-growing rosette plant that supports natural filtration."
+    },
+    {
+      "name": "Anubias Coin Leaf",
+      "type": "Foreground",
+      "quantity": 1,
+      "status": "Healthy",
+      "id": "DqPcH6XWBpo"
     }
   ],
   "tanks": [
@@ -101,6 +108,14 @@
       "temperature": 25,
       "hasFilter": true,
       "status": "Good"
+    },
+    {
+      "size": "20 Gallons Tank",
+      "waterType": "Freshwater",
+      "temperature": 26,
+      "hasFilter": true,
+      "status": "Good",
+      "id": "i4-AkCrullo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

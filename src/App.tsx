@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Navigate, Routes, Route } from "react-router";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardPage from "./pages/DashboardPage";
@@ -13,7 +13,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 function App() {
   return (
     <Routes>
-      {/* Main Layout Routes */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route element={<ProtectedRoute />}>
       <Route element={<Layout />}>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/bettas" element={<BettaPage />} />
@@ -21,17 +22,13 @@ function App() {
         <Route path="/tanks" element={<TankPage />} />
         <Route path="/plants" element={<PlantPage />} />
 
-        {/* Protected Route */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/reports" element={<ReportsPage />} />
-        </Route>
-
-        {/* Auth Route */}
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/reports" element={<ReportsPage />} />
 
         {/* Fallback 404 Route */}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

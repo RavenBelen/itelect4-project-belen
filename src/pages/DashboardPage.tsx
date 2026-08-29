@@ -1,8 +1,7 @@
 import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import { fetchBettas, fetchPlants } from "../api/client";
-import { initialTanks } from "../data/mockData";
-import type { ApiBetta, ApiPlant } from "../types";
+import { fetchBettas, fetchPlants, fetchTanks } from "../api/client";
+import type { ApiBetta, ApiPlant, ApiTank } from "../types";
 
 function DashboardPage() {
   const { data: bettas, isPending: isBettasPending, isError: isBettasError, error: bettasError } = useQuery<ApiBetta[]>({
@@ -13,16 +12,20 @@ function DashboardPage() {
     queryKey: ["plants"],
     queryFn: fetchPlants,
   });
+  const { data: tanks, isPending: isTanksPending, isError: isTanksError, error: tanksError } = useQuery<ApiTank[]>({
+    queryKey: ["tanks"],
+    queryFn: fetchTanks,
+  });
   const betta = bettas?.[0];
-  const tank = initialTanks[0];
+  const tank = tanks?.[0];
   const plant = plants?.[0];
 
-  if (isBettasPending || isPlantsPending) {
+  if (isBettasPending || isPlantsPending || isTanksPending) {
     return <div className="animate-pulse p-8">Loading aquarium overview...</div>;
   }
 
-  if (isBettasError || isPlantsError || !betta || !plant) {
-    return <div className="m-8 rounded-xl bg-rose-50 p-4 text-rose-700">{bettasError?.message || plantsError?.message || "No aquarium data is available."}</div>;
+  if (isBettasError || isPlantsError || isTanksError || !betta || !plant || !tank) {
+    return <div className="m-8 rounded-xl bg-rose-50 p-4 text-rose-700">{bettasError?.message || plantsError?.message || tanksError?.message || "No aquarium data is available."}</div>;
   }
 
   return (
@@ -51,7 +54,7 @@ function DashboardPage() {
           <div className="mt-2 flex items-baseline justify-between">
             <div className="flex items-center gap-1.5 text-2xl font-extrabold text-slate-900 dark:text-white">
               <span>🐟</span>
-              <span>1</span>
+              <span>{bettas.length}</span>
             </div>
             <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
               Healthy
@@ -68,7 +71,7 @@ function DashboardPage() {
           <div className="mt-2 flex items-baseline justify-between">
             <div className="flex items-center gap-1.5 text-2xl font-extrabold text-slate-900 dark:text-white">
               <span>🐠</span>
-              <span>1</span>
+              <span>{tanks.length}</span>
             </div>
             <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
               Active
@@ -85,7 +88,7 @@ function DashboardPage() {
           <div className="mt-2 flex items-baseline justify-between">
             <div className="flex items-center gap-1.5 text-2xl font-extrabold text-slate-900 dark:text-white">
               <span>🌿</span>
-              <span>3</span>
+              <span>{plants.length}</span>
             </div>
             <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
               Healthy
