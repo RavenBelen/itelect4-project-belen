@@ -1,6 +1,6 @@
 import type { ApiBetta, ApiPlant, ApiTank, NewBetta, NewPlant, NewTank } from "../types";
 
-export const API_URL = "http://localhost:3001";
+export const API_URL = "https://itelect4-backend-belen.vercel.app";
 
 async function getJson<T>(path: string, message: string): Promise<T> {
   const response = await fetch(`${API_URL}${path}`);
