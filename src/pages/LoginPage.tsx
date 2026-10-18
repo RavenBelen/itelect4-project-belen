@@ -44,7 +44,7 @@ function LoginPage() {
       }
 
       login(result.token, result.name);
-      navigate("/reports");
+      navigate("/dashboard");
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Could not connect to the server."
