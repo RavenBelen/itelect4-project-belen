@@ -9,11 +9,11 @@ async function getJson<T>(path: string, message: string): Promise<T> {
 }
 
 export function fetchBettas(): Promise<ApiBetta[]> {
-  return getJson<ApiBetta[]>("/bettas", "Could not load betta fish.");
+  return getJson<ApiBetta[]>("/api/bettas", "Could not load betta fish.");
 }
 
 export function fetchBettaById(id: string): Promise<ApiBetta> {
-  return getJson<ApiBetta>(`/bettas/${id}`, `No betta found with ID #${id}.`);
+  return getJson<ApiBetta>(`/api/bettas/${id}`, `No betta found with ID #${id}.`);
 }
 
 export function fetchPlants(): Promise<ApiPlant[]> {
