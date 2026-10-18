@@ -24,8 +24,40 @@ async function getJson<T>(path: string, message: string): Promise<T> {
     headers: authHeaders(),
   });
 
-  if (!response.ok) throw new Error(message);
+  if (!response.ok) {
+    throw new Error(message);
+  }
+
   return response.json() as Promise<T>;
+}
+
+async function createItem<TInput, TOutput>(
+  path: string,
+  item: TInput,
+  message: string
+): Promise<TOutput> {
+  const response = await fetch(`${API_URL}${path}`, {
+    method: "POST",
+    headers: authHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify(item),
+  });
+
+  if (!response.ok) {
+    throw new Error(message);
+  }
+
+  return response.json() as Promise<TOutput>;
+}
+
+async function deleteItem(path: string, message: string): Promise<void> {
+  const response = await fetch(`${API_URL}${path}`, {
+    method: "DELETE",
+    headers: authHeaders(),
+  });
+
+  if (!response.ok) {
+    throw new Error(message);
+  }
 }
 
 export function fetchBettas(): Promise<ApiBetta[]> {
@@ -40,40 +72,16 @@ export function fetchBettaById(id: string): Promise<ApiBetta> {
 }
 
 export function fetchPlants(): Promise<ApiPlant[]> {
-  return getJson<ApiPlant[]>("/plants", "Could not load aquatic plants.");
+  return getJson<ApiPlant[]>("/api/plants", "Could not load aquatic plants.");
 }
 
 export function fetchTanks(): Promise<ApiTank[]> {
-  return getJson<ApiTank[]>("/tanks", "Could not load aquarium tanks.");
+  return getJson<ApiTank[]>("/api/tanks", "Could not load aquarium tanks.");
 }
 
-async function createItem<TInput, TOutput>(
-  path: string,
-  item: TInput,
-  message: string
-): Promise<TOutput> {
-  const response = await fetch(`${API_URL}${path}`, {
-    method: "POST",
-    headers: authHeaders({ "Content-Type": "application/json" }),
-    body: JSON.stringify(item),
-  });
-
-  if (!response.ok) throw new Error(message);
-  return response.json() as Promise<TOutput>;
-}
-
-async function deleteItem(path: string, message: string): Promise<void> {
-  const response = await fetch(`${API_URL}${path}`, {
-    method: "DELETE",
-    headers: authHeaders(),
-  });
-
-  if (!response.ok) throw new Error(message);
-}
-
-export async function createPlant(newPlant: NewPlant): Promise<ApiPlant> {
+export function createPlant(newPlant: NewPlant): Promise<ApiPlant> {
   return createItem<NewPlant, ApiPlant>(
-    "/plants",
+    "/api/plants",
     newPlant,
     "Could not add the aquatic plant."
   );
@@ -89,17 +97,17 @@ export function createBetta(newBetta: NewBetta): Promise<ApiBetta> {
 
 export function createTank(newTank: NewTank): Promise<ApiTank> {
   return createItem<NewTank, ApiTank>(
-    "/tanks",
+    "/api/tanks",
     newTank,
     "Could not add the aquarium tank."
   );
 }
 
 export const deletePlant = (id: string) =>
-  deleteItem(`/plants/${id}`, "Could not delete the aquatic plant.");
+  deleteItem(`/api/plants/${id}`, "Could not delete the aquatic plant.");
 
 export const deleteBetta = (id: string) =>
   deleteItem(`/api/bettas/${id}`, "Could not delete the betta fish.");
 
 export const deleteTank = (id: string) =>
-  deleteItem(`/tanks/${id}`, "Could not delete the aquarium tank.");
+  deleteItem(`/api/tanks/${id}`, "Could not delete the aquarium tank.");
