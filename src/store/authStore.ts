@@ -4,19 +4,19 @@ import { persist } from "zustand/middleware";
 interface AuthState {
   token: string | null;
   userName: string | null;
-  login: (name: string) => void;
+  login: (token: string, name: string) => void;
   logout: () => void;
 }
 
-export const useAuthStore = create<AuthState>()(
+const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       token: null,
       userName: null,
 
-      login: (name: string) =>
+      login: (token, name) =>
         set({
-          token: `demo-token-${name}-${Date.now()}`,
+          token,
           userName: name,
         }),
 
