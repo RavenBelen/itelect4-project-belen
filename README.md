@@ -6,6 +6,11 @@ Betta Manager is a web application for managing betta fish, aquarium tanks, and 
 
 [Open Betta Manager](https://itelect4-project-belen.vercel.app)
 
+FIX LOGIN CREDENTIAL:
+
+email: 123example@email.com
+password: test123@123
+
 ## Backend API (SAME AS WHAT INSIDE THE BACKEND REPO)
 
 [Backend API](https://itelect4-backend-belen.vercel.app)  
