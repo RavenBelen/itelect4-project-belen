@@ -84,6 +84,10 @@ function Layout() {
               <span className="text-base">📄</span> <span>Reports</span>
             </NavLink>
 
+            <NavLink to="/ai-review" className={navClass}>
+              <span className="text-base">🤖</span> <span>AI Review</span>
+            </NavLink>
+
             <button
               onClick={() => setShowSettings(true)}
               className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-left text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
@@ -199,6 +203,11 @@ function Layout() {
         <NavLink to="/reports" className={mobileNavClass}>
           <span className="text-base">📄</span>
           <span>Reports</span>
+        </NavLink>
+
+        <NavLink to="/ai-review" className={mobileNavClass}>
+          <span className="text-base">🤖</span>
+          <span>AI Review</span>
         </NavLink>
       </nav>
 
