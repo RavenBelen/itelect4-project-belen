@@ -1,5 +1,7 @@
 import useAuthStore from "../store/authStore";
+
 import type {
+  AiReview,
   ApiBetta,
   ApiPlant,
   ApiTank,
@@ -58,6 +60,22 @@ async function deleteItem(path: string, message: string): Promise<void> {
   if (!response.ok) {
     throw new Error(message);
   }
+}
+
+export async function askAi(prompt: string): Promise<AiReview> {
+  const response = await fetch(`${API_URL}/api/ai`, {
+    method: "POST",
+    headers: authHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify({ prompt }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message ?? "Could not create an AI review.");
+  }
+
+  return data as AiReview;
 }
 
 export function fetchBettas(): Promise<ApiBetta[]> {
