@@ -10,7 +10,14 @@ import type {
   NewTank,
 } from "../types";
 
-export const API_URL = "https://itelect4-backend-belen.vercel.app";
+const defaultApiUrl = import.meta.env.DEV
+  ? "http://localhost:4000"
+  : "https://itelect4-backend-belen.vercel.app";
+
+export const API_URL = (import.meta.env.VITE_API_URL || defaultApiUrl).replace(
+  /\/+$/,
+  "",
+);
 
 function authHeaders(extraHeaders: Record<string, string> = {}) {
   const token = useAuthStore.getState().token;

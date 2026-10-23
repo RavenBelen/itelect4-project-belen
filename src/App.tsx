@@ -9,6 +9,7 @@ import PlantPage from "./pages/PlantPage";
 import ReportsPage from "./pages/ReportsPage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import AiReviewPage from "./pages/AiReviewPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/plants" element={<PlantPage />} />
 
         <Route path="/reports" element={<ReportsPage />} />
+        <Route path="/ai-review" element={<AiReviewPage />} />
 
         {/* Fallback 404 Route */}
         <Route path="*" element={<NotFoundPage />} />
